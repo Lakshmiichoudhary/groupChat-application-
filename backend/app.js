@@ -9,14 +9,19 @@ const userRoute = require("./routes/user")
 
 const app = express();
 
-app.use(cors());
+const corsOptions = {
+  origin: '*', 
+  credentials: true, 
+};
+
+app.use(cors(corsOptions));
 app.use(bodyParser.json())
 
 const PORT = process.env.PORT || 3000;
 
 app.use("/user",userRoute)
 
-sequelize.sync()
+sequelize.sync({force : false})
   .then(() => {
     app.listen(PORT, () => {
       console.log(`Server listening at port ${PORT}`);
