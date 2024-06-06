@@ -53,7 +53,7 @@ exports.loginUser = async (req, res) => {
 
         const isPasswordValid = await bcrypt.compare(password, user.password);
         if (!isPasswordValid) {
-            return res.status(400).json({ message: "Invalid email or password" });
+            return res.status(401).json({ message: "wrong password" });
         }
 
         const token = generateToken(user.id);
@@ -61,6 +61,6 @@ exports.loginUser = async (req, res) => {
         return res.status(200).json({ message: "Login successful", token });
     } catch (err) {
         console.error("Error during login:", err);
-        res.status(500).json({ message: "Failed to login" });
+        res.status(404).json({ message: "User not found" });
     }
 }

@@ -34,7 +34,8 @@ const Login = () => {
   return (
     <div className='lg:flex md:flex h-screen'>
       <div className='lg:w-6/12 p-2 font-bold'>
-        <form className='p-2 m-4 lg:mx-20 lg:my-28 border-4 from-black' onSubmit={(e) => e.preventDefault()}>
+        <form className='p-2 m-4 lg:mx-20 lg:my-28 border-4 h-3/6 shadow-2xl from-cyan-800' 
+        onSubmit={(e) => e.preventDefault()}>
           <h1 className='p-2 mx-3 text-center font-semibold text-2xl text-cyan-700'>Login</h1>
           <input className='w-full p-3 my-2 outline-none bg-gray-200'
             type='email'
