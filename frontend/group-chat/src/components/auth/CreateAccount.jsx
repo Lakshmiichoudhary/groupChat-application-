@@ -60,7 +60,7 @@ const CreateAccount = () => {
         </div>
       </div>
       <div className='lg:w-6/12 p-2 font-bold'>
-        <form className='p-2 m-4 lg:mx-28 lg:my-24 border-4 from-black shadow-2xl from-cyan-800' onSubmit={e => e.preventDefault()}>
+        <form className='p-2 m-4 lg:mx-28 lg:my-24 border-4 shadow-2xl from-cyan-800' onSubmit={e => e.preventDefault()}>
           <h1 className='p-2 mx-3 text-center font-semibold text-2xl text-cyan-700'>Signup</h1>
           <input className='w-full p-3 my-2 outline-none bg-gray-200' type='text' placeholder='Name' ref={name} />
           <input className='w-full p-3 my-2 outline-none bg-gray-200' type='email' placeholder='xyz@gmail.com' ref={email} />

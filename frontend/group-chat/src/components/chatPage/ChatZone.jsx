@@ -21,16 +21,17 @@ function ChatZone() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const token = localStorage.getItem('token');
     await fetch("http://localhost:4040/chat",{
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`
       },
       body: JSON.stringify({ message }),
     });
     setMessage('');
     fetchChat();
-    fetchUsers();
   }
 
   useEffect(()=> {
