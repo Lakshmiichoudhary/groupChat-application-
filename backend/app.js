@@ -6,6 +6,7 @@ require('dotenv').config();
 
 // Routes
 const userRoute = require("./routes/user")
+const chatRoute = require("./routes/chat")
 
 const app = express();
 
@@ -15,11 +16,12 @@ const corsOptions = {
 };
 
 app.use(cors(corsOptions));
-app.use(bodyParser.json())
+app.use(bodyParser.json());
 
 const PORT = process.env.PORT || 3000;
 
-app.use("/user",userRoute)
+app.use("/user",userRoute);
+app.use('/chat',chatRoute);
 
 sequelize.sync({force : false})
   .then(() => {
