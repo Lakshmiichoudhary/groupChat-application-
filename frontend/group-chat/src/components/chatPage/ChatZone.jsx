@@ -6,23 +6,49 @@ function ChatZone() {
   const [users,setUsers] = useState([])
 
   const fetchChat = async () => {
-    const response = await fetch("http://localhost:4040/chat");
-    const data = await response.json()
-    console.log(data)
-    setChat(data)
-  }
-
+    const token = localStorage.getItem('token');
+    const response = await fetch("http://localhost:4040/chat", {
+      headers: {
+        'Authorization': `Bearer ${token}` 
+      }
+    });
+    if (response.status === 401) {
+      console.error('Unauthorized');
+      return;
+    }
+    if (response.status === 403) {
+      console.error('Forbidden');
+      return;
+    }
+    const data = await response.json();
+    console.log(data);
+    setChat(data);
+  };
+  
   const fetchUsers = async () => {
-    const response = await fetch("http://localhost:4040/user");
-    const data = await response.json()
-    console.log(data)
-    setUsers(data)
-  }
-
+    const token = localStorage.getItem('token');
+    const response = await fetch("http://localhost:4040/user", {
+      headers: {
+        'Authorization': `Bearer ${token}` 
+      }
+    });
+    if (response.status === 401) {
+      console.error('Unauthorized');
+      return;
+    }
+    if (response.status === 403) {
+      console.error('Forbidden');
+      return;
+    }
+    const data = await response.json();
+    console.log(data);
+    setUsers(data);
+  };
+  
   const handleSubmit = async (e) => {
     e.preventDefault();
     const token = localStorage.getItem('token');
-    await fetch("http://localhost:4040/chat",{
+    await fetch("http://localhost:4040/chat", {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -32,8 +58,9 @@ function ChatZone() {
     });
     setMessage('');
     fetchChat();
+    fetchUsers();
   }
-
+  
   useEffect(()=> {
     fetchChat();
     fetchUsers();

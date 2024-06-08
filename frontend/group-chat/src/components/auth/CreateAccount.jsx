@@ -42,7 +42,9 @@ const CreateAccount = () => {
       }
 
       const data = await response.json();
-      //console.log("Signup successful:", data);
+      console.log("Signup successful:", data);
+      localStorage.setItem('token', data.token);
+      console.log("token",data.token)
       navigate("/chat");
     } catch (error) {
       console.error("Unexpected error occurred:", error); 

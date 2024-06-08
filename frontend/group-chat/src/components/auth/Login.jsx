@@ -24,6 +24,7 @@ const Login = () => {
       }
 
       localStorage.setItem('token', data.token)
+      console.log("token",data.token)
       navigate('/chat')
     } catch (error) {
       console.error("Login error:", error)
